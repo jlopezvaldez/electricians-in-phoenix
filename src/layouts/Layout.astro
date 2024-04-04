@@ -1,0 +1,100 @@
+---
+interface Props {
+  title: string;
+}
+
+import Footer from '@components/Footer.astro';
+import TopBar from '@components/TopBar.astro';
+import '@src/site.css';
+
+const { title = 'Electricians in Phoenix' } = Astro.props;
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='description' content='Astro description' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <script
+      defer
+      src='https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js'
+    ></script>
+    <script src='https://unpkg.com/htmx.org@1.9.9'></script>
+    <meta name='generator' content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class=''>
+    <div class='max-w-5xl px-4 py-4 mx-auto text-white'>
+      <TopBar />
+      <slot />
+
+      <!-- <footer
+      class='m-auto md:w-[900px] text-white justify-center pt-6 border-t-2 border-amber-600'
+    >
+      <div class='mx-auto w-full max-w-screen-xl px-4'>
+        <div class='grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4'>
+          <div>
+            <h2 class='mb-6 text-2xl font-semibold uppercase'>Company</h2>
+            <ul class='text-lg'>
+              <li class='mb-4'>
+                <a href='/advertise' class='hover:underline'>Advertise</a>
+              </li>
+
+              <li class='mb-4'>
+                <a href='/blog' class='hover:underline'>Blog</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 class='mb-6 text-2xl font-semibold uppercase'>Help center</h2>
+            <ul class='text-lg'>
+              <li class='mb-4'>
+                <a
+                  href='https://twitter.com/thefakejona'
+                  class='hover:underline'>Twitter</a
+                >
+              </li>
+              <li class='mb-4'>
+                <a href='/contact' class='hover:underline'>Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer> -->
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --accent: 92, 87, 255;
+    --accent-light: 204, 233, 250;
+    --accent-dark: 2, 8, 115;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+  }
+
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 900px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  html {
+    font-family: system-ui, sans-serif;
+    background: #1548ca;
+    background-size: 224px;
+  }
+</style>

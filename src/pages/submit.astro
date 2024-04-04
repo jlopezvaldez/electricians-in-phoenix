@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import { createElectricians } from '../lib/pocketbase';
+
+let company = {};
+
+if (Astro.request.method === 'POST') {
+  const formData = await Astro.request.formData();
+  const companyName = formData.get('companyName')?.toString() || '';
+  const href = formData.get('website')?.toString() || '';
+  const address = formData.get('address')?.toString() || '';
+  const city = formData.get('city')?.toString() || '';
+  const zip = formData.get('zip')?.toString() || '';
+  const userEmail = formData.get('userEmail')?.toString || '';
+
+  const company = await createElectricians({
+    companyName,
+    href,
+    address,
+    city,
+    zip,
+  });
+
+  const htmlResponse = `<div>
+    <h1>Thank you for your submission!</h1>
+    </div>
+    <style>
+        h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 0.5em;
+  }
+        </style>`;
+
+  return new Response(htmlResponse, {
+    headers: {
+      'Content-Type': 'text/html',
+    },
+  });
+}
+---
+
+<Layout title='Submit Your Company to Our Site'>
+  <main>
+    <h1>Add your company to our list</h1>
+    <p class='text-center text-2xl mb-12'>
+      👇 Get quick exposure to <span class='font-bold'>thousands</span> of residential
+      and commercial customers who find their partner for their next project using
+      our directory👇
+    </p>
+    <div class='my-8' id='form-submission'>
+      <form
+        class='max-w-full mx-auto'
+        hx-post='/submit'
+        hx-target='#form-submission'
+        hx-swap='outerHTTML swap:1s'
+        hx-encoding='appplication/x-www-form-urlenconded'
+      >
+        <div class='mb-5'>
+          <label
+            for='userEmail'
+            class='block mb-2 text-md font-medium text-white'
+            ><span class='text-amber-600'>* </span>Your Email</label
+          >
+          <input
+            placeholder='jane@doe.com'
+            type='text'
+            id='userEmail'
+            name='userEmail'
+            required
+            class='w-full bg-blue-600 border-blue-300 outline-1 rounded-md p-2.5 placeholder-slate-300'
+          />
+        </div>
+        <div class='mb-5'>
+          <label
+            for='companyName'
+            class='block mb-2 text-md font-medium text-white'
+            ><span class='text-amber-600'>* </span>Company Name</label
+          >
+          <input
+            placeholder='Your company name...'
+            type='text'
+            id='companyName'
+            required
+            name='companyName'
+            class='w-full bg-blue-600 border-blue-300 outline-1 rounded-md p-2.5 placeholder-slate-300'
+          />
+        </div>
+        <div class='mb-5'>
+          <label for='website' class='block mb-2 text-md font-medium text-white'
+            >Website URL</label
+          >
+          <input
+            placeholder='Your website...'
+            type='text'
+            id='website'
+            name='website'
+            class='w-full bg-blue-600 border-blue-300 outline-1 rounded-md p-2.5 placeholder-slate-300'
+          />
+        </div>
+        <div class='mb-5'>
+          <label for='address' class='block mb-2 text-md font-medium text-white'
+            ><span class='text-amber-600'>* </span>Address</label
+          >
+          <input
+            placeholder='Street Address...'
+            type='text'
+            name='address'
+            id='address'
+            required
+            class='w-full bg-blue-600 border-blue-300 outline-1 rounded-md p-2.5 placeholder-slate-300'
+          />
+        </div>
+        <div class='md:mb-5 md:flex'>
+          <div class='mb-5 md:w-1/2 md:mr-2'>
+            <label for='city' class='block mb-2 text-md font-medium text-white'
+              ><span class='text-amber-600'>* </span>City</label
+            >
+            <input
+              placeholder='City...'
+              type='text'
+              name='city'
+              id='city'
+              required
+              class='w-full bg-blue-600 border-blue-300 outline-1 rounded-md p-2.5 placeholder-slate-300'
+            />
+          </div>
+          <div class='mb-5 md:w-1/2 md:ml-2'>
+            <label for='zip' class='block mb-2 text-md font-medium text-white'
+              ><span class='text-amber-600'>* </span>ZIP Code</label
+            >
+            <input
+              placeholder='Zip Code...'
+              type='text'
+              name='zip'
+              id='zip'
+              required
+              class='w-full bg-blue-600 border-blue-300 outline-1 rounded-md p-2.5 placeholder-slate-300'
+            />
+          </div>
+        </div>
+        <div class='flex flex-col items-center justify-center'>
+          <button
+            type='submit'
+            class='md:w-1/2 w-full transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-amber-600 rounded-xl font-bold py-2 duration-300'
+            >Submit</button
+          >
+        </div>
+      </form>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 0.5em;
+  }
+  #form-submission.htmx-swapping {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+  }
+</style>

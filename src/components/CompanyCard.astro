@@ -1,0 +1,29 @@
+---
+const { company } = Astro.props;
+---
+
+<li class='rounded-lg bg-blue-600'>
+  <a href={company.href} class='block'>
+    <div class='flex justify-between items-start p-6 pb-3'>
+      <h3 class='text-2xl font-bold flex-grow'>{company.companyName}</h3>
+      <div class='flex-shrink-0'>
+        <p class='text-lg whitespace-nowrap'>{company.rating} ⭐️'s</p>
+      </div>
+    </div>
+    <div class='px-6 pb-3'>
+      <p>
+        {company.phone}
+      </p>
+      <!-- <p>
+          {company.address}, {company.city}, {company.zip}
+        </p> -->
+      <p class='text-base line-clamp-3'>{company.body}</p>
+    </div>
+    <div class='px-6 pb-3'>
+      <span
+        class='inline-block bg-amber-600 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2'
+        >Learn More</span
+      >
+    </div>
+  </a>
+</li>
