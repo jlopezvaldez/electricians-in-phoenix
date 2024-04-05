@@ -10,12 +10,14 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.5.10",
     "@astrojs/netlify": "^5.2.0",
     "@astrojs/node": "^8.2.5",
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.2.4",
     "dotenv": "^16.4.5",
     "pocketbase": "^0.21.0",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.4"
   }
 }

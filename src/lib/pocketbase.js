@@ -5,7 +5,7 @@ export const pb = new PocketBase(import.meta.env.POCKETBASE_URL ||
 
 pb.autoCancellation(false);
 
-export async function getElectricians({q = null, limit = 50, page = 1}){
+export async function getElectricians({q = '', limit = 50, page = 1}){
     const options = {
         filter: '',
     }

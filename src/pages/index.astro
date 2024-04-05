@@ -4,9 +4,13 @@ import Hero from '../components/Hero.astro';
 import { getElectricians } from '../lib/pocketbase';
 import CompanyCard from '@components/CompanyCard.astro';
 
-const q = Astro.url.searchParams.get('q');
+const q = Astro.url.searchParams.get('q') ?? '';
 
-const page = Astro.url.searchParams.get('page') || 1;
+const pageStr = Astro.url.searchParams.get('page');
+let page = pageStr ? parseInt(pageStr, 10) : 1;
+if (isNaN(page)) {
+  page = 1; // Ensure page is a number
+}
 
 const is_search = Astro.request.headers.get('HX-Trigger') === 'search';
 
@@ -16,23 +20,12 @@ const electricians1 = await getElectricians({ q, page });
 {
   is_search && (
     <>
-      {electricians1?.map((n) => (
-        <a
-          href={n.href}
-          class='block max-w p-6 my-8 border border-blue-300 rounded-lg shadow hover:bg-blue-600'
-        >
-          <h2 class='text-xl'>
-            {n.companyName}
-            <span>&rarr;</span>
-          </h2>
-          <p>{n.body}</p>
-          <p>
-            Average Rating: {n.rating}
-            <span>&#x2B50;s</span>
-          </p>
-        </a>
-      ))}
-      {electricians1.length == 15 && (
+      <ul class='grid gap-6 sm:grid-cols-2'>
+        {electricians1?.map((n) => (
+          <CompanyCard company={n} />
+        ))}
+      </ul>
+      {electricians1?.length == 50 && (
         <div
           hx-get={`/?page=${page + 1}`}
           hx-trigger='revealed'
@@ -87,7 +80,7 @@ const electricians1 = await getElectricians({ q, page });
               <CompanyCard company={n} />
             ))}
           </ul>
-          {electricians1.length == 50 && (
+          {electricians1?.length == 50 && (
             <div
               hx-get={`/?page=${page + 1}`}
               hx-trigger='revealed'
