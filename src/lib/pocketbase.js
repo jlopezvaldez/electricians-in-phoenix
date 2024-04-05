@@ -7,11 +7,11 @@ pb.autoCancellation(false);
 
 export async function getElectricians({q = '', limit = 50, page = 1}){
     const options = {
-        filter: '',
+        filter: 'live = true',
     }
 
     if (q) {
-        options.filter = `companyName ~ "${q}" || rating ~ "${q}" || city ~ "${q}" || zip ~ "${q}"` ;
+        options.filter = `live = true && companyName ~ "${q}" || rating ~ "${q}" || city ~ "${q}" || zip ~ "${q}"` ;
     }
 
     let electricians
