@@ -8,6 +8,7 @@ pb.autoCancellation(false);
 export async function getElectricians({q = '', limit = 50, page = 1}){
     const options = {
         filter: 'live = true',
+        sort: '+companyName'
     }
 
     if (q) {
@@ -18,14 +19,13 @@ export async function getElectricians({q = '', limit = 50, page = 1}){
     try {
         let result = await pb.collection('electrical_companies').getList(page,limit,options);
         electricians = result.items;
-        console.log(electricians);
     } catch (e) {
         console.log(e.response);
     }
     return electricians
 }
 
-export async function createElectricians({companyName, href, address, city, zip }){
+export async function createElectricians({companyName, href, address, city, zip, userEmail }){
     let newCompany 
 
     try{
@@ -34,7 +34,8 @@ export async function createElectricians({companyName, href, address, city, zip 
             href,
             address,
             city,
-            zip
+            zip,
+            userEmail
         })
     }
     catch (e) {
