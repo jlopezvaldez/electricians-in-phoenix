@@ -9,6 +9,13 @@ let posts = await getCollection('blog');
 posts = posts.sort(
   (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
 );
+
+const formattedDate = (date: Date) =>
+  new Date(date).toLocaleDateString('en-us', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
 ---
 
 <Layout title={'Blog'}>
@@ -20,6 +27,7 @@ posts = posts.sort(
             <a href={`/blog/${post.slug}/`} class='text-2xl font-bold'>
               {post.data.title}
             </a>
+            <p>{formattedDate(post.data.date)}</p>
           </li>
         );
       })
