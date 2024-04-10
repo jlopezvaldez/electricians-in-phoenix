@@ -17,6 +17,10 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<MarkDownLayout title={post.data.title} date={post.data.date}>
+<MarkDownLayout
+  title={post.data.title}
+  date={post.data.date}
+  image={post.data.image}
+>
   <Content />
 </MarkDownLayout>

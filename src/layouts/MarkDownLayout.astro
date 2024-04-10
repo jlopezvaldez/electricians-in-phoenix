@@ -1,7 +1,7 @@
 ---
 import Layout from './Layout.astro';
 
-const { title, date } = Astro.props;
+const { title, date, image } = Astro.props;
 
 const formattedDate = (date: string) =>
   new Date(date).toLocaleDateString('en-us', {
@@ -13,9 +13,17 @@ const formattedDate = (date: string) =>
 
 <Layout title={title}>
   <div id='markdown' class='py-10 px-6 mx-auto max-w-7xl space-y-10'>
+    <div class='mb-8'>
+      <img
+        src={image.src}
+        class='object-cover h-80 w-full shadow-lg rounded-lg'
+        alt={image.alt}
+      />
+    </div>
     <h1>{title}</h1>
     <p>{formattedDate(date)}</p>
-    <hr class='my-4 border-zinc-500' />
+    <hr class='my-4
+        border-zinc-500' />
     <slot />
   </div>
 </Layout>

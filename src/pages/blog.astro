@@ -19,15 +19,36 @@ const formattedDate = (date: Date) =>
 ---
 
 <Layout title={'Blog'}>
-  <ul class='py-10 px-6 mx-auto max-w-7xl space-y-10'>
+  {/* Use grid layout with 3 columns */}
+  <div class='px-6 lg:px-8 max-w-2xl mx-auto text-center'>
+    <h1 class='text-4xl font-bold tracking-tight sm:text-6xl'>
+      Your Phoenix Electrician Hub
+    </h1>
+    <p class='mt-10 mb-10 text-xl text-center md:text-2xl'>
+      Discover top-rated electricians near you and explore expert insights on
+      everything electrical.
+    </p>
+  </div>
+
+  <ul
+    class='grid grid-cols-1 md:grid-cols-3 py-10 px-6 mx-auto max-w-7xl gap-10'
+  >
     {
       posts.map((post) => {
         return (
-          <li class='p-8 border rounded-lg'>
+          // Remove the surrounding <div> as it's unnecessary
+          <li class='rounded-lg transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 ... bg-blue-800'>
+            {/* Ensure the image covers the width */}
             <a href={`/blog/${post.slug}/`} class='text-2xl font-bold'>
-              {post.data.title}
+              {' '}
+              <img
+                src={post.data.image.src}
+                class='h-48 object-cover w-full rounded-t-lg'
+              />{' '}
+              {/* Add block and margin-top for spacing */}
+              <p class='p-2'>{post.data.title}</p>
             </a>
-            <p>{formattedDate(post.data.date)}</p>
+            <p class='p-2 text-sm'>{formattedDate(post.data.date)}</p>
           </li>
         );
       })
