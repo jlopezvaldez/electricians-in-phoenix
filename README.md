@@ -1,54 +1,23 @@
-# Astro Starter Kit: Basics
+# Electricians in Phoenix
 
-```sh
-npm create astro@latest -- --template basics
-```
+This was a super simple project built using the AHA stack (Astro, HTMX, and Alpine.js). It's nothing fancy, but looks great and works for finding electricians in the Phoenix area.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Features
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- **Search Functionality**: Quickly find electricians by service zipcode, ratings, or location.
+- **User Ratings**: Check ratings from other users to make informed decisions about the electricians you choose to hire.
+- **Contact Information**: Access comprehensive contact details for each listed electrician, including phone numbers, email addresses, and physical addresses.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## How to Use
 
-## 🚀 Project Structure
+1. **Visit the Website**: Go to [Phoenix Electricians](http://www.phoenixelectricians.com) (Note: link is hypothetical and not active).
+2. **Search for Electricians**: Use the search bar or browse through categories to find electricians who suit your needs.
+3. **Review Profiles**: Click on an electrician's card to be directed to their website and learn more about their services, read customer reviews, and view their contact information.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Contributing
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+If you're an electrician in Phoenix and would like to be featured in our directory, please DM me on [X] (http://www.phoenixelectricians.com).
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Support
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+For support or to report issues with the website, please DM me on [X] (http://www.phoenixelectricians.com).
